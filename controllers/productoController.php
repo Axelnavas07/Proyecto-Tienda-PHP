@@ -5,6 +5,8 @@ class productoController
 {
     public function index()
     {
+        $producto = new Producto();
+        $productos = $producto->getRandom();
         require_once 'views/producto/destacados.php';
     }
 
@@ -47,7 +49,6 @@ class productoController
 
                 //Guardar la imagen
                 if (isset($_FILES['imagen'])) {
-                    # code...
 
                     $file = $_FILES['imagen'];
                     $filename = $file['name'];
@@ -66,7 +67,7 @@ class productoController
                 if (isset($_GET['id'])) {
                     $id = $_GET['id'];
                     $producto->setId($id);
-                    
+
                     $save = $producto->update();
                 }else{
                     $save = $producto->save();
